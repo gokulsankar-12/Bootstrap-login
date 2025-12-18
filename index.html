@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page using Bootstrap</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        /* Custom styles to match the Tailwind design */
+        /* Matches Tailwind's p-10 (40px) padding for the container */
+        .p-10-custom {
+            padding: 2.5rem !important;
+            /* 40px */
+        }
+
+        /* Matches Tailwind's text-3xl font size */
+        .h2-lg-custom {
+            font-size: 1.875rem !important;
+            /* 30px */
+            line-height: 2.25rem !important;
+            /* 36px */
+        }
+
+        /* Matches Tailwind's mb-6 (1.5rem / 24px) margin-bottom for the paragraph */
+        .mb-6-custom {
+            margin-bottom: 1.5rem !important;
+            /* 24px */
+        }
+
+        /* Matches Tailwind's h-[450px] for the image */
+        .dashboard-img-tall {
+            height: 450px !important;
+            object-fit: cover;
+            /* Keeps image sharp and cover area */
+            /* You can remove the old .dashboard-img style if you only use this one */
+        }
+
+        /* Matches Tailwind's rounded-xl (0.75rem / 12px) for the image */
+        .rounded-3xl-custom {
+            border-radius: 0.75rem !important;
+            /* rounded-xl */
+        }
+
+        /* Matches Tailwind's shadow-xl for the image */
+        .shadow-xl-custom {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+        }
+
+        /* Right column background (from-blue-600 to-indigo-700) */
+        .login-form-card {
+            background: linear-gradient(135deg, #2563eb, #4f46e5);
+        }
+
+        /* Main container styling (rounded-2xl and shadow-xl) */
+        .login-container {
+            border-radius: 1rem !important;
+            /* rounded-2xl */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+            /* shadow-xl */
+            overflow: hidden;
+        }
+
+        /* Input styling to match rounded-xl and blue-500 ring on focus */
+        .form-control {
+            border-radius: 0.75rem !important;
+            /* rounded-xl */
+            padding: 1rem !important;
+            /* p-3 */
+            border-color: #e5e7eb;
+            /* default border color, similar to border-gray-300 */
+        }
+
+        .form-control:focus {
+            border-color: #3b82f6;
+            /* blue-500 */
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5) !important;
+            /* focus:ring-2 focus:ring-blue-500 */
+        }
+
+        /* Button styling (rounded-xl, bg-blue-600) */
+        .btn-primary {
+            --bs-btn-bg: #2563eb;
+            /* blue-600 */
+            --bs-btn-border-color: #2563eb;
+            /* blue-600 */
+            --bs-btn-hover-bg: #1d4ed8;
+            /* blue-700 */
+            --bs-btn-hover-border-color: #1d4ed8;
+            /* blue-700 */
+            border-radius: 0.75rem !important;
+            /* rounded-xl */
+            padding-top: 0.75rem !important;
+            /* py-3 */
+            padding-bottom: 0.75rem !important;
+            /* py-3 */
+            font-weight: 600 !important;
+            /* font-semibold */
+        }
+
+        /* Text colors */
+        .text-secondary-match {
+            color: #6b7280 !important;
+            /* gray-500 */
+        }
+
+        .text-error-match {
+            color: #ef4444 !important;
+            /* red-500 */
+        }
+
+        .text-indigo-match {
+            color: #4f46e5 !important;
+            /* indigo-600 */
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            /* Removes the default outline */
+        }
+
+        /* Adjustments for specific elements */
+        .dashboard-img {
+            height: 450px;
+            object-fit: cover;
+            border-radius: 0.75rem !important;
+            /* rounded-xl */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+            /* shadow-lg */
+            padding: 0.5rem !important;
+            /* p-2 */
+        }
+
+        /* Small screen padding adjustments for the left column */
+        .p-4-sm {
+            padding: 1rem !important;
+            /* p-4 */
+        }
+
+        @media (min-width: 576px) {
+            .p-sm-5-match {
+                padding: 2rem !important;
+                /* sm:p-8 */
+            }
+        }
+
+        @media (min-width: 768px) {
+            .p-md-10-match {
+                padding: 2.5rem !important;
+                /* md:p-10 */
+            }
+
+            .mb-md-20-match {
+                margin-bottom: 5rem !important;
+                /* md:mb-20 */
+            }
+
+            .h2-md-match {
+                font-size: 2.25rem !important;
+                /* md:text-4xl */
+            }
+
+            .mb-md-8-match {
+                margin-bottom: 2rem !important;
+                /* sm:mb-8 */
+            }
+
+            .text-indigo-match:hover {
+                color: #6366f1 !important;
+                /* hover:text-indigo-500 */
+            }
+        }
+    </style>
+</head>
+
+<body class="d-flex align-items-center justify-content-center min-vh-100 bg-light px-4 p-sm-4">
+    <div class="d-flex bg-white login-container w-100" style="max-width: 1150px;">
+        <div class="row g-0 w-100">
+            <div class="col-md-6 p-4-sm p-sm-5-match p-md-10-match">
+
+                <div class="mb-5 mb-sm-5 mb-md-20-match">
+                    <img class="w-25" src="EXL_Service_logo.png" alt="EXL_Service_logo" style="max-width: 80px;">
+                </div>
+
+                <h2 class="h2 h3-md h2-md-match fw-bold mb-2 text-center">Welcome Back</h2>
+                <p class="text-secondary-match fs-6 mb-6 mb-md-8-match text-center small">Enter your email and password
+                    to
+                    access your
+                    account</p>
+
+                <div class="mb-5">
+                    <div class="mb-3">
+                        <label for="email" class="form-label fw-medium">Email</label>
+                        <input type="email" name="email" id="email" placeholder="Enter your email" class="form-control">
+                        <p id="emailError" class="text-error-match small mt-1 visually-hidden">
+                            Email is required
+                        </p>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label fw-medium">Password</label>
+                        <input type="password" name="password" id="password" placeholder="Enter your password"
+                            class="form-control">
+                        <p id="passwordError" class="text-error-match small mt-1 visually-hidden">
+                            Password is required
+                        </p>
+                    </div>
+
+                    <div
+                        class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between gap-2 mt-3">
+                        <div class="form-check">
+                            <input type="checkbox" id="remember" class="form-check-input">
+                            <label class="form-check-label text-secondary-match small" for="remember">Remember
+                                me</label>
+                        </div>
+
+                        <a href="#" class="fw-medium text-decoration-none text-indigo-match">Forget
+                            Password?</a>
+                    </div>
+                    <p id="rememberError" class="text-error-match small mt-2 visually-hidden">
+                        Please select Remember me to continue
+                    </p>
+                </div>
+
+                <button onclick="login()" class="btn btn-primary w-100">
+                    Log In
+                </button>
+
+                <div class="d-flex align-items-center justify-content-center gap-1 mt-3">
+                    <h3 class="text-secondary-match small mb-0">Don’t have an account?</h3>
+                    <a href="#" class="fw-medium text-decoration-none text-indigo-match">
+                        Register Now
+                    </a>
+                </div>
+
+            </div>
+
+            <div
+                class="d-none d-md-flex col-md-6 align-items-center justify-content-center login-form-card text-white p-10-custom">
+                <div class="text-white ms-2">
+                    <h2 class="h2-lg-custom fw-bold mb-4">
+                        Effortlessly manage your team<br> and operations.
+                    </h2>
+                    <p class="mb-6-custom text-white">
+                        Log in to access your dashboard and manage everything in<br> one place.
+                    </p>
+
+                    <img src="image.jpg" alt="Dashboard"
+                        class="img-fluid dashboard-img-tall d-block mx-auto rounded-3xl-custom shadow-xl-custom">
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <script>
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+    const rememberCheckbox = document.getElementById("remember");
+
+    const emailError = document.getElementById("emailError");
+    const passwordError = document.getElementById("passwordError");
+    const rememberError = document.getElementById("rememberError");
+
+    /* ================= EMAIL LIVE VALIDATION ================= */
+    emailInput.addEventListener("input", () => {
+        if (emailInput.value.trim() === "gokulsrutthi2004@gmail.com") {
+            emailError.classList.add("visually-hidden");
+            emailInput.classList.remove("border", "border-danger");
+        }
+    });
+
+    /* ================= PASSWORD LIVE VALIDATION ================= */
+    passwordInput.addEventListener("input", () => {
+        const password = passwordInput.value;
+        let messages = [];
+
+        if (!/[A-Z]/.test(password)) messages.push("1 uppercase letter");
+        if (!/[a-z]/.test(password)) messages.push("1 lowercase letter");
+        if ((password.match(/\d/g) || []).length < 2) messages.push("2 numbers");
+        if (!/[@$!%*?&]/.test(password)) messages.push("1 special character");
+        if (password.length < 8) messages.push("minimum 8 characters");
+
+        if (messages.length === 0) {
+            passwordError.classList.add("visually-hidden");
+            passwordInput.classList.remove("border", "border-danger");
+        } else {
+            passwordError.textContent =
+                "Password must contain: " + messages.join(", ");
+            passwordError.classList.remove("visually-hidden");
+            passwordInput.classList.add("border", "border-danger");
+        }
+    });
+
+    /* ================= REMEMBER ME ================= */
+    rememberCheckbox.addEventListener("change", () => {
+        if (rememberCheckbox.checked) {
+            rememberError.classList.add("visually-hidden");
+        }
+    });
+
+     // 🔹 Hide email error while typing
+            emailInput.addEventListener("input", () => {
+                emailError.classList.add("visually-hidden");
+                emailInput.classList.remove("border border-danger");
+            });
+
+            // 🔹 Hide password error while typing
+            passwordInput.addEventListener("input", () => {
+                passwordError.classList.add("visually-hidden");
+                passwordInput.classList.remove("border borfer-danger");
+            });
+
+            // 🔹 Hide remember error when checkbox is clicked
+            rememberCheckbox.addEventListener("change", () => {
+                rememberError.classList.add("visually-hidden");
+            });
+
+    /* ================= LOGIN VALIDATION ================= */
+    function login() {
+        let isValid = true;
+
+        // Email check
+        if (emailInput.value.trim() !== "gokulsrutthi2004@gmail.com") {
+            emailError.textContent = "Invalid email address";
+            emailError.classList.remove("visually-hidden");
+            emailInput.classList.add("border", "border-danger");
+            isValid = false;
+        }
+
+        // Password check
+        const password = passwordInput.value;
+        let passwordMessages = [];
+
+        if (!/[A-Z]/.test(password)) passwordMessages.push("1 uppercase letter");
+        if (!/[a-z]/.test(password)) passwordMessages.push("1 lowercase letter");
+        if ((password.match(/\d/g) || []).length < 2) passwordMessages.push("2 numbers");
+        if (!/[@$!%*?&]/.test(password)) passwordMessages.push("1 special character");
+        if (password.length < 8) passwordMessages.push("minimum 8 characters");
+
+        if (passwordMessages.length > 0) {
+            passwordError.textContent =
+                "Password must contain: " + passwordMessages.join(", ");
+            passwordError.classList.remove("visually-hidden");
+            passwordInput.classList.add("border", "border-danger");
+            isValid = false;
+        }
+
+        // Remember me
+        if (!rememberCheckbox.checked) {
+            rememberError.classList.remove("visually-hidden");
+            isValid = false;
+        }
+
+        if (isValid) {
+            alert("Login Successful");
+
+            emailInput.value = "";
+            passwordInput.value = "";
+            rememberCheckbox.checked = false;
+        }
+    }
+</script>
+
+</body>
+
+</html>
